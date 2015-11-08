@@ -12,6 +12,3 @@ puts 'hello, Ruby'.index('Ruby')
 
 # Run a Ruby program from a file.
 # ruby do.rb
-
-# Bonus problem: if you're feeling the need for a little more, write a program that picks a random number.
-# Let a player guess the number, telling the player whether the guess is too low or too high.
