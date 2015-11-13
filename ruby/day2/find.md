@@ -5,7 +5,7 @@ You can read an entire file into memory with:
 f = File.read('/path/to/file')
 ```
 
-or
+or:
 
 ```ruby
 f = File.readlines('/path/to/file')
