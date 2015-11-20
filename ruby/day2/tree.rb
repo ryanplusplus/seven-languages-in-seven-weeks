@@ -16,7 +16,7 @@
 class Tree
   attr_accessor :children, :node_name
 
-  def initialize(tree = {})
+  def initialize(tree)
     @node_name = tree.keys[0]
     @children = tree.values[0].map do |sub|
       Tree.new(Hash[*sub])
