@@ -2,11 +2,11 @@
 # just each. Now, do the same with each_slice in Enumerable.
 
 (1..16).each do |i|
-  if i % 4 > 0 then
+  if i % 4 > 0
     print "#{i}, "
   else
     print "#{i}\n"
   end
 end
 
-(1..16).each_slice(4) { |slice| puts slice.join(', ') }
+(1..16).each_slice(4) { |slice| p slice }
