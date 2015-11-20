@@ -18,8 +18,8 @@ class Tree
 
   def initialize(tree = {})
     @node_name = tree.keys[0]
-    @children = tree.values[0].map do |name, children|
-      Tree.new({ name => children })
+    @children = tree.values[0].map do |sub|
+      Tree.new(Hash[*sub])
     end
   end
 
@@ -33,7 +33,7 @@ class Tree
   end
 end
 
-Tree.new({
+Tree.new(
   'grandpa' => {
     'dad' => {
       'child 1' => {}, 'child 2' => {}
@@ -42,5 +42,4 @@ Tree.new({
       'child 3' => {},
       'child 4' => {}
     }
-  }
-}).visit_all { |node| puts node.node_name }
+  }).visit_all { |node| puts node.node_name }
