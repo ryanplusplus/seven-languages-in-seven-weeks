@@ -15,16 +15,6 @@
 # This should print "lions".
 
 module ActsAsCsv
-  def self.included(base)
-    base.extend ClassMethods
-  end
-
-  module ClassMethods
-    def acts_as_csv
-      include InstanceMethods
-    end
-  end
-
   class CsvRow
     def initialize(map)
       @map = map
@@ -35,35 +25,32 @@ module ActsAsCsv
     end
   end
 
-  module InstanceMethods
-    attr_accessor :headers, :csv_contents
+  attr_accessor :headers, :csv_contents
 
-    def initialize
-      read
+  def initialize
+    read
+  end
+
+  def read
+    @csv_contents = []
+    filename = self.class.to_s.downcase + '.txt'
+    file = File.new(filename)
+    @headers = file.gets.chomp.split(', ')
+
+    file.each do |row|
+      @csv_contents << row.chomp.split(', ')
     end
+  end
 
-    def read
-      @csv_contents = []
-      filename = self.class.to_s.downcase + '.txt'
-      file = File.new(filename)
-      @headers = file.gets.chomp.split(', ')
-
-      file.each do |row|
-        @csv_contents << row.chomp.split(', ')
-      end
-    end
-
-    def each
-      @csv_contents.each do |row|
-        yield CsvRow.new(Hash[*@headers.zip(row).flatten])
-      end
+  def each
+    @csv_contents.each do |row|
+      yield CsvRow.new(Hash[*@headers.zip(row).flatten])
     end
   end
 end
 
 class RubyCsv
   include ActsAsCsv
-  acts_as_csv
 end
 
 csv = RubyCsv.new
