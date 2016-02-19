@@ -7,3 +7,4 @@ curlyBrackets := method(
 )
 
 { 1, 2, 1 + 2 } println
+s
