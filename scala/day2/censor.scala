@@ -2,10 +2,15 @@
 // Shoot and Darn with Pucky and Beans alternatives. Use a map to
 // store the curse words and their alternatives.
 
+// Load the curse words and alternatives from a file.
+
 trait Censor {
   protected val text: String
+  private val replacements = collection.mutable.Map[String, String]()
 
-  private val replacements = Map("Shoot" -> "Pucky", "Darn" -> "Beans")
+  for(line <- scala.io.Source.fromFile("censor.txt").getLines) {
+    replacements += line.split(" ")(0) -> line.split(" ")(1)
+  }
 
   def censor = text.split(" ").map(s => replacements get s match {
     case Some(x) => x
@@ -15,4 +20,4 @@ trait Censor {
 
 class Text(val text: String) extends Censor
 
-println(new Text("Shoot that Darn wabbit").censor)
+println(new Text("Shoot that darn wabbit").censor)
