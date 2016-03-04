@@ -12,9 +12,9 @@ trait Censor {
     replacements += line.split(" ")(0) -> line.split(" ")(1)
   }
 
-  def censor = text.split(" ").map(s => replacements get s match {
-    case Some(x) => x
-    case _ => s
+  def censor = text.split(" ").map(word => replacements get word match {
+    case Some(censored) => censored
+    case _ => word
   }).mkString(" ")
 }
 
