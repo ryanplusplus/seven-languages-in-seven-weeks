@@ -12,7 +12,7 @@ trait Censor {
     replacements += line.split(" ")(0) -> line.split(" ")(1)
   }
 
-  def censor = text.split(" ").map(word => replacements get word match {
+  def censored = text.split(" ").map(word => replacements get word match {
     case Some(censored) => censored
     case _ => word
   }).mkString(" ")
@@ -20,4 +20,4 @@ trait Censor {
 
 class Text(val text: String) extends Censor
 
-println(new Text("Shoot that darn wabbit").censor)
+println(new Text("Shoot that darn wabbit").censored)
