@@ -9,15 +9,14 @@ trait Censor {
   private val replacements = collection.mutable.Map[String, String]()
 
   for(line <- scala.io.Source.fromFile("censor.txt").getLines) {
-    replacements += line.split(" ")(0) -> line.split(" ")(1)
+    replacements += line.split("[^a-zA-Z]+")(0) -> line.split(" ")(1)
   }
 
-  def censored = text.split(" ").map(word => replacements get word match {
-    case Some(censored) => censored
-    case _ => word
-  }).mkString(" ")
+  def censored = replacements.foldLeft(text) {
+    case (s, (k, v)) => s.replaceAll(k, v)
+  }
 }
 
 class Text(val text: String) extends Censor
 
-println(new Text("Shoot that darn wabbit").censored)
+println(new Text("Shoot, that darn wabbit").censored)
