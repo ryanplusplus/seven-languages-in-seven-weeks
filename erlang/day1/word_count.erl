@@ -5,7 +5,6 @@
 
 aux([], Acc) -> Acc;
 aux([$ ], Acc) -> Acc;
-aux([$ , $ ], Acc) -> Acc;
 aux([$ , $  | Tail], Acc) -> aux(" " ++ Tail, Acc);
 aux([$  | Tail], Acc) -> aux(Tail, Acc + 1);
 aux([_ | Tail], Acc) -> aux(Tail, Acc).
