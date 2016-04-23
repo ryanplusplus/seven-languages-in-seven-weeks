@@ -6,14 +6,12 @@ start() ->
     {From, "casa"} ->
       From ! "house",
       start();
-
     {From, "blanca"} ->
       From ! "white",
       start();
-
     {From, What} ->
       From ! "No entiendo",
-      exit({no_entiendo, What}),
+      exit({no_entiendo, What})
   end.
 
 translate(To, Word) ->

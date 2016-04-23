@@ -12,7 +12,7 @@ This doesn't quite work yet...
 ```erlang
 c(translator).
 c(doctor).
-doctor:start(fun translator:start/0, as, amigo).
+doctor:start_supervised(fun translator:start/0, as, amigo).
 translator:translate(amigo, "casa").
 translator:translate(amigo, "cas").
 ```

@@ -9,8 +9,8 @@ start(Function, as, Name) ->
 start_supervised(Function, as, Name) ->
   Pid = spawn(
     fun() ->
-      loop(fun() ->
-        start(Function, as, Name) end,
+      loop(
+        fun() -> start(Function, as, Name) end,
         list_to_atom(lists:flatten(io_lib:format("~p", [Name]) ++ ["doctor"])))
     end),
   Pid ! new,
