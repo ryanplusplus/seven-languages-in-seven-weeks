@@ -2,8 +2,6 @@
 
 (defn of [c]
   (cond
-    (instance? (class []) c) :vector
-    (instance? (class {}) c) :map
-    (instance? (class `()) c) :list
-    (instance? (class `(1)) c) :list
-    (instance? (class `(1 2)) c) :list))
+    (list? c) :list
+    (map? c) :map
+    (vector? c) :vector))

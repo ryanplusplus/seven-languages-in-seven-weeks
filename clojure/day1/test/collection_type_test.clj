@@ -3,13 +3,13 @@
             collection-type))
 
 (deftest empty-list-test
-  (is (= :list (collection-type/of `()))))
+  (is (= :list (collection-type/of '()))))
 
 (deftest singleton-list-test
-  (is (= :list (collection-type/of `(1)))))
+  (is (= :list (collection-type/of '(1)))))
 
 (deftest list-test
-  (is (= :list (collection-type/of `(1 2 3)))))
+  (is (= :list (collection-type/of '(1 2 3)))))
 
 (deftest empty-map-test
   (is (= :map (collection-type/of {}))))
