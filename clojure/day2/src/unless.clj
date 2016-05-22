@@ -1,3 +1,5 @@
+; Implement an unless with an else condition using macros.
+
 (ns unless)
 
 (defmacro unless
