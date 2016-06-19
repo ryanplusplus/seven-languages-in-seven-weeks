@@ -10,3 +10,9 @@ module Main where
 
   allEven3 :: [Integer] -> [Integer]
   allEven3 xs = filter even xs
+
+  allEven4 :: [Integer] -> [Integer]
+  allEven4 [] = []
+  allEven4 (h:t)
+    | even h = h:allEven4 t
+    | otherwise = allEven1 t
